@@ -1,10 +1,46 @@
-import React from 'react'
-import MainScreen from './components/MainScreen'
+import React, { useState } from "react";
+import MainScreen from "./components/MainScreen";
+import HowToPlay from "./components/HowToPlay";
+import Credits from "./components/Credits";
 
-export default function App() {
+const App = () => {
+  const [darkMode, setDarkMode] = useState(false);
+  const [currentScreen, setCurrentScreen] = useState("main");
+
+  const toggleDarkMode = () => {
+    setDarkMode((prevDarkMode) => !prevDarkMode);
+  };
+
+  const showMainScreen = () => {
+    setCurrentScreen("main");
+  };
+
+  const showHowToPlayScreen = () => {
+    setCurrentScreen("howToPlay");
+  };
+
+  const showCreditsScreen = () => {
+    setCurrentScreen("credits");
+  };
+
   return (
-    <div>
-      <MainScreen/>
-    </div>
-  )
-}
+    <>
+      {currentScreen === "main" && (
+        <MainScreen
+          onHowToPlayClick={showHowToPlayScreen}
+          onCreditsClick={showCreditsScreen}
+          darkMode={darkMode}
+          toggleDarkMode={toggleDarkMode}
+        />
+      )}
+      {currentScreen === "howToPlay" && (
+        <HowToPlay onBackClick={showMainScreen} darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
+      )}
+      {currentScreen === "credits" && (
+        <Credits onBackClick={showMainScreen} darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
+      )}
+    </>
+  );
+};
+
+export default App;
