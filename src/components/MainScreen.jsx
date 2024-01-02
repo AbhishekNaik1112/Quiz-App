@@ -2,6 +2,7 @@ import React from "react";
 import { CgDarkMode } from "react-icons/cg";
 
 const MainScreen = ({
+  onStartClick,
   onHowToPlayClick,
   onCreditsClick,
   darkMode,
@@ -9,7 +10,7 @@ const MainScreen = ({
 }) => {
   return (
     <div
-      className={`flex flex-col items-center justify-center h-screen ${
+      className={` text-center flex flex-col items-center justify-center h-screen ${
         darkMode ? "bg-black text-white" : "bg-white text-black"
       }`}
     >
@@ -19,6 +20,7 @@ const MainScreen = ({
 
       <div className="mb-4">
         <button
+          onClick={onStartClick}
           className={`px-4 md:px-6 py-3 font-bold rounded-md ${
             darkMode
               ? "bg-blue-700 hover:bg-blue-800 active:bg-blue-900"

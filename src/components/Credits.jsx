@@ -43,8 +43,7 @@ const Credits = ({ onBackClick, darkMode, toggleDarkMode }) => {
           } else {
             console.log("Dark Mode Off");
           }
-        }
-      }
+        }}
       >
         <CgDarkMode />
       </button>
