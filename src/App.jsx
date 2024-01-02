@@ -1,7 +1,10 @@
 import React from 'react'
+import MainScreen from './components/MainScreen'
 
 export default function App() {
   return (
-    <div>App</div>
+    <div>
+      <MainScreen/>
+    </div>
   )
 }
