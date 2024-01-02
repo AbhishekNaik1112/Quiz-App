@@ -64,7 +64,7 @@ const QuestionBox = ({ darkMode, toggleDarkMode }) => {
       </div>
       <div>
         <button
-          className={`px-4 md:px-6 mr-52 py-3 font-bold rounded-full text-xl md:text-3xl ${
+          className={`px-4 md:px-6 mr-36 py-3 font-bold rounded-full text-xl md:text-3xl ${
             darkMode
               ? "bg-yellow-500 hover:bg-yellow-600 active:bg-yellow-700"
               : "bg-yellow-300 hover:bg-yellow-400 active:bg-yellow-500"
