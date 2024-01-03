@@ -5,6 +5,7 @@ import Questions from "../Questions";
 
 const QuestionBox = ({ darkMode, toggleDarkMode }) => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [highlighterActive, setHighlighterActive] = useState(false);
 
   const handleOptionClick = (optionId) => {
     setCurrentQuestion((prevQuestion) => prevQuestion + 1);
@@ -35,7 +36,7 @@ const QuestionBox = ({ darkMode, toggleDarkMode }) => {
       <div className="mb-8 text-2xl md:text-3xl">
         Question {currentQuestion + 1} of {Questions.length}
       </div>
-      <div className="mb-8 text-xl md:text-3xl font-bold text-blue-600">
+      <div className={`mb-8 text-xl md:text-3xl font-bold ${highlighterActive ? 'text-red-600' : 'text-blue-600'}`}>
         {Questions[currentQuestion].text}
       </div>
       <div className="mb-8 grid gap-4 grid-cols-1 md:grid-cols-2">
@@ -63,15 +64,16 @@ const QuestionBox = ({ darkMode, toggleDarkMode }) => {
         </button>
       </div>
       <div>
-        <button
-          className={`px-4 md:px-6 mr-16 py-3 font-bold rounded-full text-xl md:text-3xl ${
-            darkMode
-              ? "bg-yellow-500 hover:bg-yellow-600 active:bg-yellow-700"
-              : "bg-yellow-300 hover:bg-yellow-400 active:bg-yellow-500"
+      <button
+          className={`px-4 md:px-6 mr-20 py-3 font-bold rounded-full text-xl md:text-3xl ${
+            highlighterActive
+              ? "bg-red-500 hover:bg-red-600 active:bg-red-700"
+              : "bg-blue-300 hover:bg-blue-400 active:bg-blue-500"
           } focus:outline-none absolute right-16 md:right-8 bottom-4 md:bottom-5 ${
             darkMode ? "text-white" : "text-black"
           }`}
           onClick={() => {
+            setHighlighterActive(!highlighterActive);
             console.log("Highlighter clicked");
           }}
         >
