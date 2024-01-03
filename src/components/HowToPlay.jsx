@@ -4,11 +4,11 @@ import { CgDarkMode } from "react-icons/cg";
 const HowToPlay = ({ onBackClick, darkMode, toggleDarkMode }) => {
   return (
     <div
-      className={`text-center flex flex-col items-center justify-center min-h-screen ${
+      className={`text-center flex flex-col items-center justify-center min-h-screen transition-all duration-500 ${
         darkMode ? "bg-black text-white" : "bg-white text-black"
       }`}
     >
-      <div className="text-4xl md:text-6xl lg:text-8xl font-bold mb-8 border-b-8 border-gray-800">
+      <div className="text-4xl md:text-6xl lg:text-8xl font-bold mb-8 border-b-8 border-gray-800 ">
         How to Play
       </div>
 
@@ -24,7 +24,7 @@ const HowToPlay = ({ onBackClick, darkMode, toggleDarkMode }) => {
       </ul>
 
       <button
-        className={`px-4 md:px-6 py-3 font-bold rounded-md ${
+        className={`px-4 md:px-6 py-3 font-bold rounded-md transition-all duration-300 ${
           darkMode
             ? "bg-blue-700 hover:bg-blue-800 active:bg-blue-900"
             : "bg-blue-500 hover:bg-blue-600 active:bg-blue-800"
@@ -35,7 +35,7 @@ const HowToPlay = ({ onBackClick, darkMode, toggleDarkMode }) => {
       </button>
 
       <button
-        className={`px-4 md:px-6 py-3 font-bold rounded-full text-lg md:text-2xl lg:text-3xl ${
+        className={`px-4 md:px-6 py-3 font-bold rounded-full text-lg md:text-2xl lg:text-3xl transition-all duration-300 ${
           darkMode
             ? "bg-gray-600 hover:bg-gray-700 active:bg-gray-800"
             : "bg-gray-400 hover:bg-gray-600 active:bg-gray-800"

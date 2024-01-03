@@ -10,7 +10,7 @@ const MainScreen = ({
 }) => {
   return (
     <div
-      className={`text-center flex flex-col items-center justify-center min-h-screen ${
+      className={`text-center flex flex-col items-center justify-center min-h-screen transition-all duration-500 ${
         darkMode ? "bg-black text-white" : "bg-white text-black"
       }`}
     >
@@ -21,7 +21,7 @@ const MainScreen = ({
       <div className="mb-4">
         <button
           onClick={onStartClick}
-          className={`px-4 md:px-6 py-3 font-bold rounded-md ${
+          className={`px-4 md:px-6 py-3 font-bold rounded-md transition-all duration-300 ${
             darkMode
               ? "bg-blue-700 hover:bg-blue-800 active:bg-blue-900"
               : "bg-blue-500 hover:bg-blue-600 active:bg-blue-800"
@@ -33,7 +33,7 @@ const MainScreen = ({
 
       <div className="mb-4">
         <button
-          className={`px-4 md:px-6 py-3 font-bold rounded-md ${
+          className={`px-4 md:px-6 py-3 font-bold rounded-md transition-all duration-300 ${
             darkMode
               ? "bg-green-700 hover:bg-green-800 active:bg-green-900"
               : "bg-green-500 hover:bg-green-600 active:bg-green-800"
@@ -46,7 +46,7 @@ const MainScreen = ({
 
       <div>
         <button
-          className={`px-4 md:px-6 py-3 font-bold rounded-md ${
+          className={`px-4 md:px-6 py-3 font-bold rounded-md transition-all duration-300 ${
             darkMode
               ? "bg-red-700 hover:bg-red-800 active:bg-red-900"
               : "bg-red-500 hover:bg-red-600 active:bg-red-800"
@@ -59,7 +59,7 @@ const MainScreen = ({
 
       <div>
         <button
-          className={`px-4 md:px-6 py-3 font-bold rounded-full text-xl md:text-3xl ${
+          className={`px-4 md:px-6 py-3 font-bold rounded-full text-xl md:text-3xl transition-all duration-300 ${
             darkMode
               ? "bg-gray-600 hover:bg-gray-700 active:bg-gray-800"
               : "bg-gray-400 hover:bg-gray-600 active:bg-gray-800"

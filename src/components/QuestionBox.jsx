@@ -37,7 +37,7 @@ const QuestionBox = ({ darkMode, toggleDarkMode }) => {
       <button
         key={option.id}
         onClick={() => handleOptionClick(option.id)}
-        className={`mb-2 px-4 py-2 text-lg font-semibold rounded-full ${
+        className={`mb-2 px-4 py-2 text-lg font-semibold rounded-full transition-all duration-500 ${
           darkMode
             ? "bg-gray-800 hover:bg-gray-700 text-white"
             : "bg-gray-200 hover:bg-gray-300 text-black"
@@ -50,7 +50,7 @@ const QuestionBox = ({ darkMode, toggleDarkMode }) => {
 
   return (
     <div
-      className={`text-center flex flex-col items-center justify-center min-h-screen transition-all ${
+      className={`text-center flex flex-col items-center justify-center min-h-screen transition-all duration-300 ${
         darkMode ? "bg-black text-white" : "bg-white text-black"
       }`}
     >
@@ -74,12 +74,12 @@ const QuestionBox = ({ darkMode, toggleDarkMode }) => {
           >
             {Questions[currentQuestion].text}
           </div>
-          <div className="mb-8 grid gap-4 grid-cols-1 md:grid-cols-2">
+          <div className="mb-8 grid gap-4 grid-cols-1 md:grid-cols-2 transition-all duration-300">
             {renderOptions()}
           </div>
-          <div className="mb-4 md:absolute md:right-8 md:bottom-5">
+          <div className="mb-4 md:absolute md:right-8 md:bottom-5 transition-all duration-300">
             <button
-              className={`px-4 md:px-6 py-3 font-bold rounded-full text-xl md:text-3xl ${
+              className={`px-4 md:px-6 py-3 font-bold rounded-full text-xl md:text-3xl transition-all duration-300 ${
                 darkMode
                   ? "bg-gray-600 hover:bg-gray-700 active:bg-gray-800"
                   : "bg-gray-400 hover:bg-gray-600 active:bg-gray-800"
@@ -96,9 +96,9 @@ const QuestionBox = ({ darkMode, toggleDarkMode }) => {
               <CgDarkMode />
             </button>
           </div>
-          <div className="mb-4 md:absolute md:right-32 md:bottom-5">
+          <div className="mb-4 md:absolute md:right-32 md:bottom-5 transition-all duration-300">
             <button
-              className={`px-4 md:px-6 py-3 font-bold rounded-full text-xl md:text-3xl ${
+              className={`px-4 md:px-6 py-3 font-bold rounded-full text-xl md:text-3xl transition-all duration-300 ${
                 highlighterActive
                   ? "bg-red-500 hover:bg-red-600 active:bg-red-700"
                   : "bg-blue-300 hover:bg-blue-400 active:bg-blue-500"
