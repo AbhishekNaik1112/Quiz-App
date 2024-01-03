@@ -1,15 +1,39 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import { CgDarkMode } from "react-icons/cg";
+import Money from "../assets/7C.mp3";
 
-const Result = ({ score, percentage, darkMode, toggleDarkMode, onPlayAgainClick }) => {
+const Result = ({
+  score,
+  percentage,
+  darkMode,
+  toggleDarkMode,
+  onPlayAgainClick,
+}) => {
+  const audioRef = useRef(null);
+
+  useEffect(() => {
+    const audio = audioRef.current;
+
+    if (audio && score === 5) {
+      if (audio.paused) {
+        audio
+          .play()
+          .catch((error) => console.error("Error playing audio:", error));
+      }
+    }
+  }, [score]);
+
   return (
-    <div className={`text-center ${darkMode ? "bg-black text-white" : "bg-white text-black"}`}>
-      <div className="text-4xl font-bold mb-4">
-        Your Score is {score}
-      </div>
-      <div className="text-2xl">
-        and the percentage is {percentage}%
-      </div>
+    <div
+      className={`text-center ${
+        darkMode ? "bg-black text-white" : "bg-white text-black"
+      }`}
+    >
+      <div className="text-4xl font-bold mb-4">Your Score is {score}</div>
+      <div className="text-2xl">and the percentage is {percentage}%</div>
+
+      <audio ref={audioRef} src={Money} />
+
       <button
         className={`px-4 md:px-6 py-3 font-bold rounded-full text-xl md:text-3xl ${
           darkMode
@@ -18,10 +42,13 @@ const Result = ({ score, percentage, darkMode, toggleDarkMode, onPlayAgainClick 
         } focus:outline-none absolute right-4 md:right-8 bottom-16 md:bottom-20 ${
           darkMode ? "text-white" : "text-black"
         }`}
-        onClick={onPlayAgainClick}
+        onClick={() => {
+          onPlayAgainClick();
+        }}
       >
         Play Again
       </button>
+
       <button
         className={`px-4 md:px-6 py-3 font-bold rounded-full text-xl md:text-3xl ${
           darkMode
