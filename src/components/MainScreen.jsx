@@ -1,6 +1,8 @@
+// Import necessary components and icons
 import React from "react";
 import { CgDarkMode } from "react-icons/cg";
 
+// MainScreen component definition
 const MainScreen = ({
   onStartClick,
   onHowToPlayClick,
@@ -9,15 +11,18 @@ const MainScreen = ({
   toggleDarkMode,
 }) => {
   return (
+    // Container for the entire main screen
     <div
       className={`text-center flex flex-col items-center justify-center min-h-screen transition-all duration-500 ${
         darkMode ? "bg-black text-white" : "bg-white text-black"
       }`}
     >
+      {/* Header displaying the game title */}
       <div className="text-4xl md:text-6xl lg:text-8xl font-bold mb-8 border-b-8 border-gray-800">
         REACT QUIZ
       </div>
 
+      {/* START button */}
       <div className="mb-4">
         <button
           onClick={onStartClick}
@@ -31,6 +36,7 @@ const MainScreen = ({
         </button>
       </div>
 
+      {/* HOW TO PLAY button */}
       <div className="mb-4">
         <button
           className={`px-4 md:px-6 py-3 font-bold rounded-md transition-all duration-300 ${
@@ -44,6 +50,7 @@ const MainScreen = ({
         </button>
       </div>
 
+      {/* CREDITS button */}
       <div>
         <button
           className={`px-4 md:px-6 py-3 font-bold rounded-md transition-all duration-300 ${
@@ -57,6 +64,7 @@ const MainScreen = ({
         </button>
       </div>
 
+      {/* Dark Mode toggle button */}
       <div>
         <button
           className={`px-4 md:px-6 py-3 font-bold rounded-full text-xl md:text-3xl transition-all duration-300 ${
@@ -68,6 +76,7 @@ const MainScreen = ({
           }`}
           onClick={() => {
             toggleDarkMode();
+            // Log whether Dark Mode is On or Off
             if (!darkMode) {
               console.log("Dark Mode On");
             } else {
@@ -82,4 +91,5 @@ const MainScreen = ({
   );
 };
 
+// Export the MainScreen component
 export default MainScreen;

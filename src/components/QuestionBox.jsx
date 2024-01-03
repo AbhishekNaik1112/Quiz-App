@@ -1,24 +1,30 @@
+// Import necessary components and icons from external libraries
 import React, { useState } from "react";
 import { CgDarkMode } from "react-icons/cg";
 import { FaHighlighter } from "react-icons/fa";
 import Questions from "../Questions";
 import Result from "./Results";
 
+// Functional component for rendering the quiz questions
 const QuestionBox = ({ darkMode, toggleDarkMode }) => {
+  // State variables for managing the quiz state
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [highlighterActive, setHighlighterActive] = useState(false);
   const [score, setScore] = useState(0);
   const [showResult, setShowResult] = useState(false);
 
+  // Handler for clicking on quiz options
   const handleOptionClick = (optionId) => {
     const isCorrect = Questions[currentQuestion].options.find(
       (option) => option.id === optionId && option.isCorrect
     );
 
+    // Update score if the selected option is correct
     if (isCorrect) {
       setScore((prevScore) => prevScore + 1);
     }
 
+    // Move to the next question or show the result if all questions are answered
     if (currentQuestion + 1 < Questions.length) {
       setCurrentQuestion((prevQuestion) => prevQuestion + 1);
     } else {
@@ -26,12 +32,14 @@ const QuestionBox = ({ darkMode, toggleDarkMode }) => {
     }
   };
 
+  // Handler for clicking on "Play Again" button
   const handlePlayAgainClick = () => {
     setCurrentQuestion(0);
     setScore(0);
     setShowResult(false);
   };
 
+  // Render quiz options dynamically based on the current question
   const renderOptions = () => {
     return Questions[currentQuestion].options.map((option) => (
       <button
@@ -48,6 +56,7 @@ const QuestionBox = ({ darkMode, toggleDarkMode }) => {
     ));
   };
 
+  // Main rendering logic for the QuestionBox component
   return (
     <div
       className={`text-center flex flex-col items-center justify-center min-h-screen transition-all duration-300 ${
@@ -55,6 +64,7 @@ const QuestionBox = ({ darkMode, toggleDarkMode }) => {
       }`}
     >
       {showResult ? (
+        // Render the Result component if showResult is true
         <Result
           score={score}
           percentage={(score / Questions.length) * 100}
@@ -63,6 +73,7 @@ const QuestionBox = ({ darkMode, toggleDarkMode }) => {
           onPlayAgainClick={handlePlayAgainClick}
         />
       ) : (
+        // Render quiz questions, options, and buttons
         <>
           <div className="mb-8 text-2xl md:text-3xl">
             Question {currentQuestion + 1} of {Questions.length}
@@ -77,6 +88,7 @@ const QuestionBox = ({ darkMode, toggleDarkMode }) => {
           <div className="mb-8 grid gap-4 grid-cols-1 md:grid-cols-2 transition-all duration-300">
             {renderOptions()}
           </div>
+          {/* Dark Mode toggle button */}
           <div className="mb-4 md:absolute md:right-8 md:bottom-5 transition-all duration-300">
             <button
               className={`px-4 md:px-6 py-3 font-bold rounded-full text-xl md:text-3xl transition-all duration-300 ${
@@ -96,6 +108,7 @@ const QuestionBox = ({ darkMode, toggleDarkMode }) => {
               <CgDarkMode />
             </button>
           </div>
+          {/* Highlighter toggle button */}
           <div className="mb-4 md:absolute md:right-32 md:bottom-5 transition-all duration-300">
             <button
               className={`px-4 md:px-6 py-3 font-bold rounded-full text-xl md:text-3xl transition-all duration-500 ${
@@ -117,4 +130,5 @@ const QuestionBox = ({ darkMode, toggleDarkMode }) => {
   );
 };
 
+// Export the QuestionBox component as the default export
 export default QuestionBox;
