@@ -10,11 +10,11 @@ const MainScreen = ({
 }) => {
   return (
     <div
-      className={` text-center flex flex-col items-center justify-center h-screen ${
+      className={`text-center flex flex-col items-center justify-center min-h-screen ${
         darkMode ? "bg-black text-white" : "bg-white text-black"
       }`}
     >
-      <div className="text-4xl md:text-6xl lg:text-8xl font-bold mb-8 border-b-8 border-gray-800 ">
+      <div className="text-4xl md:text-6xl lg:text-8xl font-bold mb-8 border-b-8 border-gray-800">
         REACT QUIZ
       </div>
 
@@ -56,6 +56,7 @@ const MainScreen = ({
           CREDITS
         </button>
       </div>
+
       <div>
         <button
           className={`px-4 md:px-6 py-3 font-bold rounded-full text-xl md:text-3xl ${

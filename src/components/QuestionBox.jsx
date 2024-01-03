@@ -2,13 +2,34 @@ import React, { useState } from "react";
 import { CgDarkMode } from "react-icons/cg";
 import { FaHighlighter } from "react-icons/fa";
 import Questions from "../Questions";
+import Result from "./Results";
 
 const QuestionBox = ({ darkMode, toggleDarkMode }) => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [highlighterActive, setHighlighterActive] = useState(false);
+  const [score, setScore] = useState(0);
+  const [showResult, setShowResult] = useState(false);
 
   const handleOptionClick = (optionId) => {
-    setCurrentQuestion((prevQuestion) => prevQuestion + 1);
+    const isCorrect = Questions[currentQuestion].options.find(
+      (option) => option.id === optionId && option.isCorrect
+    );
+
+    if (isCorrect) {
+      setScore((prevScore) => prevScore + 1);
+    }
+
+    if (currentQuestion + 1 < Questions.length) {
+      setCurrentQuestion((prevQuestion) => prevQuestion + 1);
+    } else {
+      setShowResult(true);
+    }
+  };
+
+  const handlePlayAgainClick = () => {
+    setCurrentQuestion(0);
+    setScore(0);
+    setShowResult(false);
   };
 
   const renderOptions = () => {
@@ -29,57 +50,69 @@ const QuestionBox = ({ darkMode, toggleDarkMode }) => {
 
   return (
     <div
-      className={`text-center flex flex-col items-center justify-center h-screen transition-all ${
+      className={`text-center flex flex-col items-center justify-center min-h-screen transition-all ${
         darkMode ? "bg-black text-white" : "bg-white text-black"
       }`}
     >
-      <div className="mb-8 text-2xl md:text-3xl">
-        Question {currentQuestion + 1} of {Questions.length}
-      </div>
-      <div className={`mb-8 text-xl md:text-3xl font-bold ${highlighterActive ? 'text-red-600' : 'text-blue-600'}`}>
-        {Questions[currentQuestion].text}
-      </div>
-      <div className="mb-8 grid gap-4 grid-cols-1 md:grid-cols-2">
-        {renderOptions()}
-      </div>
-      <div>
-        <button
-          className={`px-4 md:px-6 py-3 font-bold rounded-full text-xl md:text-3xl ${
-            darkMode
-              ? "bg-gray-600 hover:bg-gray-700 active:bg-gray-800"
-              : "bg-gray-400 hover:bg-gray-600 active:bg-gray-800"
-          } focus:outline-none absolute right-4 md:right-8 bottom-4 md:bottom-5 ${
-            darkMode ? "text-white" : "text-black"
-          }`}
-          onClick={() => {
-            toggleDarkMode();
-            if (!darkMode) {
-              console.log("Dark Mode On");
-            } else {
-              console.log("Dark Mode Off");
-            }
-          }}
-        >
-          <CgDarkMode />
-        </button>
-      </div>
-      <div>
-      <button
-          className={`px-4 md:px-6 mr-20 py-3 font-bold rounded-full text-xl md:text-3xl ${
-            highlighterActive
-              ? "bg-red-500 hover:bg-red-600 active:bg-red-700"
-              : "bg-blue-300 hover:bg-blue-400 active:bg-blue-500"
-          } focus:outline-none absolute right-16 md:right-8 bottom-4 md:bottom-5 ${
-            darkMode ? "text-white" : "text-black"
-          }`}
-          onClick={() => {
-            setHighlighterActive(!highlighterActive);
-            console.log("Highlighter clicked");
-          }}
-        >
-          <FaHighlighter />
-        </button>
-      </div>
+      {showResult ? (
+        <Result
+          score={score}
+          percentage={(score / Questions.length) * 100}
+          darkMode={darkMode}
+          toggleDarkMode={toggleDarkMode}
+          onPlayAgainClick={handlePlayAgainClick}
+        />
+      ) : (
+        <>
+          <div className="mb-8 text-2xl md:text-3xl">
+            Question {currentQuestion + 1} of {Questions.length}
+          </div>
+          <div
+            className={`mb-8 text-xl md:text-3xl font-bold ${
+              highlighterActive ? "text-red-600" : "text-blue-600"
+            }`}
+          >
+            {Questions[currentQuestion].text}
+          </div>
+          <div className="mb-8 grid gap-4 grid-cols-1 md:grid-cols-2">
+            {renderOptions()}
+          </div>
+          <div className="mb-4 md:absolute md:right-8 md:bottom-5">
+            <button
+              className={`px-4 md:px-6 py-3 font-bold rounded-full text-xl md:text-3xl ${
+                darkMode
+                  ? "bg-gray-600 hover:bg-gray-700 active:bg-gray-800"
+                  : "bg-gray-400 hover:bg-gray-600 active:bg-gray-800"
+              } focus:outline-none`}
+              onClick={() => {
+                toggleDarkMode();
+                if (!darkMode) {
+                  console.log("Dark Mode On");
+                } else {
+                  console.log("Dark Mode Off");
+                }
+              }}
+            >
+              <CgDarkMode />
+            </button>
+          </div>
+          <div className="mb-4 md:absolute md:right-32 md:bottom-5">
+            <button
+              className={`px-4 md:px-6 py-3 font-bold rounded-full text-xl md:text-3xl ${
+                highlighterActive
+                  ? "bg-red-500 hover:bg-red-600 active:bg-red-700"
+                  : "bg-blue-300 hover:bg-blue-400 active:bg-blue-500"
+              } focus:outline-none`}
+              onClick={() => {
+                setHighlighterActive(!highlighterActive);
+                console.log("Highlighter clicked");
+              }}
+            >
+              <FaHighlighter />
+            </button>
+          </div>
+        </>
+      )}
     </div>
   );
 };

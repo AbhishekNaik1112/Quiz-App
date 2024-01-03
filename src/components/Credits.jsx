@@ -4,7 +4,7 @@ import { CgDarkMode } from "react-icons/cg";
 const Credits = ({ onBackClick, darkMode, toggleDarkMode }) => {
   return (
     <div
-      className={`text-center flex flex-col items-center justify-center h-screen ${
+      className={`text-center flex flex-col items-center justify-center min-h-screen ${
         darkMode ? "bg-black text-white" : "bg-white text-black"
       }`}
     >
@@ -13,7 +13,7 @@ const Credits = ({ onBackClick, darkMode, toggleDarkMode }) => {
       </div>
 
       <div className="text-xl md:text-2xl lg:text-3xl mb-4">
-        Made by Abhishek
+        Made by Abhishek Naik
         <div>Tech used: ReactJS and Tailwind CSS</div>
       </div>
 
@@ -22,7 +22,7 @@ const Credits = ({ onBackClick, darkMode, toggleDarkMode }) => {
           darkMode
             ? "bg-blue-700 hover:bg-blue-800 active:bg-blue-900"
             : "bg-blue-500 hover:bg-blue-600 active:bg-blue-800"
-        } focus:outline-none focus:shadow-outline-blue text-2xl md:text-4xl`}
+        } focus:outline-none text-xl md:text-4xl`}
         onClick={onBackClick}
       >
         Back
