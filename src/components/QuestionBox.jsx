@@ -68,7 +68,7 @@ const QuestionBox = ({ darkMode, toggleDarkMode }) => {
             Question {currentQuestion + 1} of {Questions.length}
           </div>
           <div
-            className={`mb-8 text-xl md:text-3xl font-bold ${
+            className={`mb-8 text-xl md:text-3xl font-bold transition-all duration-500 ${
               highlighterActive ? "text-red-600" : "text-blue-600"
             }`}
           >
@@ -98,7 +98,7 @@ const QuestionBox = ({ darkMode, toggleDarkMode }) => {
           </div>
           <div className="mb-4 md:absolute md:right-32 md:bottom-5 transition-all duration-300">
             <button
-              className={`px-4 md:px-6 py-3 font-bold rounded-full text-xl md:text-3xl transition-all duration-300 ${
+              className={`px-4 md:px-6 py-3 font-bold rounded-full text-xl md:text-3xl transition-all duration-500 ${
                 highlighterActive
                   ? "bg-red-500 hover:bg-red-600 active:bg-red-700"
                   : "bg-blue-300 hover:bg-blue-400 active:bg-blue-500"
